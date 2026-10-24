@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="theme-color" content="#f3f1e8">
+	<meta name="description" content="Morrow is a neighborhood coffee bar for good coffee, warm bread, and taking your time.">
+	<title>Morrow Coffee Bar — Take your time</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght,SOFT,WONK@9..144,500,20,1;9..144,600,20,1&display=swap" rel="stylesheet">
+	<style>
+		:root {
+			color-scheme: light;
+			--paper: #f3f1e8;
+			--ink: #183b32;
+			--muted: #62756b;
+			--lime: #d8ed83;
+			--line: rgba(24, 59, 50, .2);
+			--sans: "DM Sans", sans-serif;
+			--serif: "Fraunces", Georgia, serif;
+		}
+
+		* { box-sizing: border-box; }
+		html { scroll-behavior: smooth; }
+		body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); }
+		a { color: inherit; text-decoration: none; }
+		button { color: inherit; font: inherit; }
+		.wrap { width: min(1320px, calc(100% - 96px)); margin-inline: auto; }
+
+		.topline { height: 36px; display: flex; align-items: center; justify-content: center; background: var(--lime); color: var(--ink); font-size: 11px; font-weight: 600; letter-spacing: 0; }
+		.topline span { display: flex; align-items: center; gap: 9px; }
+		.topline i { width: 6px; height: 6px; border-radius: 50%; background: var(--ink); }
+
+		.hero { position: relative; min-height: min(760px, 84vh); min-height: min(760px, 84svh); overflow: hidden; isolation: isolate; color: #fff; background: #253b31; }
+		.hero::before { position: absolute; z-index: -2; inset: 0; content: ""; background: url("https://images.unsplash.com/photo-1445116572660-236099ec97a0?auto=format&fit=crop&w=2200&q=88") center 54% / cover; transform: scale(1.015); animation: settle 1.2s ease-out both; }
+		.hero::after { position: absolute; z-index: -1; inset: 0; content: ""; background: linear-gradient(90deg, rgba(14, 35, 29, .75) 0%, rgba(14, 35, 29, .43) 47%, rgba(14, 35, 29, .04) 100%), linear-gradient(0deg, rgba(10, 24, 20, .35), transparent 24%); }
+		.nav { height: 92px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,.28); }
+		.brand { display: inline-flex; align-items: center; gap: 11px; font-size: 18px; font-weight: 700; }
+		.brand-mark { width: 31px; height: 31px; display: grid; place-items: center; border: 1px solid rgba(255,255,255,.8); border-radius: 50%; font-family: var(--serif); font-size: 19px; font-weight: 500; }
+		.brand small { display: block; margin-top: 2px; font-size: 9px; font-weight: 500; letter-spacing: 0; }
+		.nav-links { display: flex; align-items: center; gap: 36px; font-size: 13px; font-weight: 500; }
+		.nav-links a:not(.nav-cta) { transition: opacity .2s; }
+		.nav-links a:not(.nav-cta):hover { opacity: .7; }
+		.nav-cta { min-height: 43px; display: inline-flex; align-items: center; gap: 15px; padding: 0 17px; border: 1px solid rgba(255,255,255,.75); border-radius: 2px; transition: background .2s, color .2s; }
+		.nav-cta:hover { background: #fff; color: var(--ink); }
+		.nav-cta b { font-size: 17px; font-weight: 400; }
+		.menu-toggle { display: none; width: 44px; height: 44px; place-items: center; border: 1px solid rgba(255,255,255,.65); border-radius: 2px; background: transparent; cursor: pointer; }
+		.menu-toggle svg { width: 20px; height: 20px; }
+
+		.hero-copy { min-height: calc(min(760px, 84svh) - 92px); display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding: 24px 0 65px; }
+		.eyebrow { display: flex; align-items: center; gap: 11px; margin: 0 0 23px; font-size: 11px; font-weight: 600; }
+		.eyebrow::before { width: 25px; height: 1px; content: ""; background: currentColor; }
+		h1 { max-width: 720px; margin: 0; font-family: var(--serif); font-size: clamp(64px, 8.3vw, 118px); font-weight: 500; line-height: .91; letter-spacing: 0; }
+		h1 em { color: var(--lime); font-weight: 500; }
+		.hero-bottom { width: 100%; display: flex; align-items: flex-end; justify-content: space-between; margin-top: 35px; }
+		.hero-description { max-width: 330px; margin: 0; color: rgba(255,255,255,.88); font-size: 15px; line-height: 1.65; }
+		.hero-link { display: inline-flex; align-items: center; gap: 13px; padding-bottom: 7px; border-bottom: 1px solid rgba(255,255,255,.7); font-size: 13px; }
+		.hero-link span { font-size: 18px; transition: transform .2s; }
+		.hero-link:hover span { transform: translateX(4px); }
+		.hero-index { position: absolute; right: 0; bottom: 26px; writing-mode: vertical-rl; color: rgba(255,255,255,.76); font-size: 10px; }
+
+		.intro { display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 40px; padding-block: 68px 60px; border-bottom: 1px solid var(--line); }
+		.section-kicker { margin: 0 0 13px; color: var(--muted); font-size: 10px; font-weight: 700; }
+		.intro h2 { max-width: 720px; margin: 0; font-family: var(--serif); font-size: clamp(32px, 4vw, 52px); font-weight: 500; line-height: 1.08; letter-spacing: 0; }
+		.intro h2 em { color: #789038; font-weight: 500; }
+		.intro-note { max-width: 240px; margin: 0 0 4px; color: var(--muted); font-size: 13px; line-height: 1.65; }
+
+		.menu-section { padding-block: 66px 83px; }
+		.section-head { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 29px; }
+		.section-head h2 { margin: 0; font-family: var(--serif); font-size: clamp(37px, 5vw, 60px); font-weight: 500; line-height: 1; letter-spacing: 0; }
+		.menu-note { margin: 0 0 4px; color: var(--muted); font-size: 12px; }
+		.menu-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+		.menu-item { min-width: 0; }
+		.menu-image { aspect-ratio: 1.22 / 1; overflow: hidden; background: #d5d4c8; }
+		.menu-image img { width: 100%; height: 100%; display: block; object-fit: cover; transition: transform .55s cubic-bezier(.2,.7,.2,1); }
+		.menu-item:hover .menu-image img { transform: scale(1.04); }
+		.menu-meta { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding-top: 15px; }
+		.menu-meta h3 { margin: 0; font-family: var(--serif); font-size: 22px; font-weight: 500; letter-spacing: 0; }
+		.menu-meta p { margin: 0; color: var(--muted); font-size: 12px; }
+
+		.visit { background: #dce8cb; }
+		.visit-inner { min-height: 330px; display: grid; grid-template-columns: 1fr 1fr 1fr; align-items: center; gap: 40px; padding-block: 60px; }
+		.visit-title { font-family: var(--serif); font-size: clamp(40px, 5vw, 61px); font-weight: 500; line-height: .98; letter-spacing: 0; }
+		.visit-title em { color: #789038; font-weight: 500; }
+		.visit-block { padding-left: 25px; border-left: 1px solid rgba(24,59,50,.27); }
+		.visit-block h3 { margin: 0 0 13px; font-size: 10px; font-weight: 700; }
+		.visit-block p, .visit-block a { margin: 0; color: #496258; font-size: 13px; line-height: 1.8; }
+		.visit-block a { display: inline-block; margin-top: 8px; border-bottom: 1px solid rgba(24,59,50,.45); }
+
+		footer { background: var(--ink); color: #f3f1e8; }
+		.footer-inner { min-height: 90px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+		.footer-brand { font-family: var(--serif); font-size: 23px; }
+		.footer-note, .footer-social { color: rgba(243,241,232,.7); font-size: 11px; }
+		.footer-social { display: flex; gap: 22px; }
+
+		@keyframes settle { from { opacity: .65; transform: scale(1.06); } to { opacity: 1; transform: scale(1.015); } }
+		@media (max-width: 760px) {
+			.wrap { width: min(100% - 40px, 600px); }
+			.topline { height: 32px; font-size: 10px; }
+			.hero { min-height: 690px; min-height: 82svh; }
+			.hero::before { background-position: 56% center; }
+			.hero::after { background: linear-gradient(90deg, rgba(14,35,29,.72), rgba(14,35,29,.27)), linear-gradient(0deg, rgba(10,24,20,.4), transparent 45%); }
+			.nav { height: 76px; }
+			.brand { font-size: 16px; }
+			.menu-toggle { display: grid; }
+			.nav-links { position: absolute; z-index: 2; top: 108px; left: 20px; right: 20px; display: none; align-items: stretch; gap: 0; padding: 8px 18px; border: 1px solid rgba(255,255,255,.35); background: rgba(24,59,50,.97); }
+			.nav-links.is-open { display: flex; flex-direction: column; }
+			.nav-links a:not(.nav-cta) { padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,.2); }
+			.nav-cta { justify-content: space-between; margin-block: 12px 5px; }
+			.hero-copy { min-height: calc(82svh - 76px); padding-bottom: 58px; }
+			h1 { max-width: 520px; font-size: clamp(62px, 13vw, 91px); }
+			.hero-bottom { align-items: flex-start; flex-direction: column; gap: 22px; margin-top: 26px; }
+			.hero-description { max-width: 290px; font-size: 14px; }
+			.hero-index { right: 20px; bottom: 19px; }
+			.intro { grid-template-columns: 1fr; gap: 18px; padding-block: 49px 43px; }
+			.intro-note { max-width: 340px; }
+			.menu-section { padding-block: 48px 57px; }
+			.section-head { align-items: flex-start; flex-direction: column; gap: 12px; margin-bottom: 22px; }
+			.menu-grid { grid-template-columns: 1fr; gap: 25px; }
+			.menu-image { aspect-ratio: 1.48 / 1; }
+			.menu-meta { padding-top: 12px; }
+			.visit-inner { grid-template-columns: 1fr 1fr; gap: 30px 20px; padding-block: 45px; }
+			.visit-title { grid-column: 1 / -1; font-size: 49px; }
+			.visit-block { padding-left: 14px; }
+			.footer-inner { min-height: 120px; flex-wrap: wrap; justify-content: space-between; gap: 7px 18px; padding-block: 22px; }
+			.footer-note { order: 3; width: 100%; }
+			.footer-social { gap: 14px; }
+		}
+		@media (max-width: 380px) {
+			.wrap { width: calc(100% - 32px); }
+			h1 { font-size: 59px; }
+			.visit-inner { grid-template-columns: 1fr; }
+			.visit-title { grid-column: auto; }
+			.visit-block { min-height: 88px; }
+		}
+		@media (prefers-reduced-motion: reduce) {
+			*, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+		}
+	</style>
+</head>
+<body>
+	<div class="topline"><span><i aria-hidden="true"></i> OPEN DAILY · 7:30 AM — 5 PM</span></div>
+	<main>
+		<section class="hero" id="home" aria-label="Morrow Coffee Bar">
+			<header class="nav wrap">
+				<a class="brand" href="#home" aria-label="Morrow Coffee Bar home">
+					<span class="brand-mark" aria-hidden="true">m</span>
+					<span>MORROW<small>COFFEE & BREAD</small></span>
+				</a>
+				<button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="navigation">
+					<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+				</button>
+				<nav class="nav-links" id="navigation" aria-label="Main navigation">
+					<a href="#story">Our place</a>
+					<a href="#menu">The menu</a>
+					<a href="#visit">Find us</a>
+					<a class="nav-cta" href="#visit">Come on in <b aria-hidden="true">↗</b></a>
+				</nav>
+			</header>
+			<div class="hero-copy wrap">
+				<p class="eyebrow">YOUR NEIGHBORHOOD COFFEE BAR</p>
+				<h1>Make room<br>for <em>morrow.</em></h1>
+				<div class="hero-bottom">
+					<p class="hero-description">Thoughtful coffee, warm-from-the-oven things, and a little more time for yourself.</p>
+					<a class="hero-link" href="#menu">A taste of what's here <span aria-hidden="true">↓</span></a>
+				</div>
+			</div>
+			<span class="hero-index" aria-hidden="true">EST. 2021 &nbsp; · &nbsp; PORTLAND, OR</span>
+		</section>
+
+		<section class="intro wrap" id="story">
+			<div>
+				<p class="section-kicker">A GOOD PLACE TO LAND</p>
+				<h2>Come for the coffee.<br>Stay for <em>whatever comes next.</em></h2>
+			</div>
+			<p class="intro-note">A small, sunny corner for first sips, long catch-ups, and the everyday in between.</p>
+		</section>
+
+		<section class="menu-section wrap" id="menu">
+			<div class="section-head">
+				<div><p class="section-kicker">MADE HERE, MADE WITH CARE</p><h2>A few favorites</h2></div>
+				<p class="menu-note">Good things, all day long.</p>
+			</div>
+			<div class="menu-grid">
+				<article class="menu-item">
+					<div class="menu-image"><img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=900&q=82" alt="Freshly poured cappuccino with delicate latte art" loading="lazy"></div>
+					<div class="menu-meta"><h3>The little cappuccino</h3><p>espresso · silky milk</p></div>
+				</article>
+				<article class="menu-item">
+					<div class="menu-image"><img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=900&q=82" alt="Golden, flaky pastries fresh from the oven" loading="lazy"></div>
+					<div class="menu-meta"><h3>Morning bun</h3><p>citrus sugar · every morning</p></div>
+				</article>
+				<article class="menu-item">
+					<div class="menu-image"><img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=900&q=82&sat=-18" alt="A glass of iced coffee ready for a sunny afternoon" loading="lazy"></div>
+					<div class="menu-meta"><h3>Slow drip, iced</h3><p>12-hour steep · oat optional</p></div>
+				</article>
+			</div>
+		</section>
+
+		<section class="visit" id="visit">
+			<div class="visit-inner wrap">
+				<div class="visit-title">Your table<br>is <em>waiting.</em></div>
+				<div class="visit-block">
+					<h3>COME FIND US</h3>
+					<p>2146 SE Division Street<br>Portland, Oregon 97202</p>
+					<a href="https://maps.google.com/?q=2146+SE+Division+Street+Portland+OR" target="_blank" rel="noreferrer">Get directions ↗</a>
+				</div>
+				<div class="visit-block">
+					<h3>WHEN THE DOOR'S OPEN</h3>
+					<p>Monday — Friday &nbsp; 7:30 — 5<br>Saturday — Sunday &nbsp; 8 — 4</p>
+					<a href="mailto:hello@morrowcoffee.example">Say hello ↗</a>
+				</div>
+			</div>
+		</section>
+	</main>
+	<footer>
+		<div class="footer-inner wrap">
+			<a class="footer-brand" href="#home">Morrow.</a>
+			<span class="footer-note">Good coffee. No hurry. © 2026</span>
+			<div class="footer-social"><a href="https://instagram.com" target="_blank" rel="noreferrer">Instagram ↗</a><a href="mailto:hello@morrowcoffee.example">Email ↗</a></div>
+		</div>
+	</footer>
+	<script>
+		const menuButton = document.querySelector('.menu-toggle');
+		const navigation = document.querySelector('#navigation');
+
+		menuButton.addEventListener('click', () => {
+			const isOpen = menuButton.getAttribute('aria-expanded') === 'true';
+			menuButton.setAttribute('aria-expanded', String(!isOpen));
+			menuButton.setAttribute('aria-label', isOpen ? 'Open navigation' : 'Close navigation');
+			navigation.classList.toggle('is-open', !isOpen);
+		});
+
+		navigation.addEventListener('click', (event) => {
+			if (event.target.closest('a')) {
+				menuButton.setAttribute('aria-expanded', 'false');
+				menuButton.setAttribute('aria-label', 'Open navigation');
+				navigation.classList.remove('is-open');
+			}
+		});
+	</script>
+</body>
+</html>
